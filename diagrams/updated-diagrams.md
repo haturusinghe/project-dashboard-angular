@@ -49,6 +49,7 @@ class Project{
 }
 
 class ProjectListComponent{
+    -projects: Project[]
     +ngOnInit(): void
 }
 

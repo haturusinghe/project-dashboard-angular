@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { Project } from 'src/app/models/project.model'
 
 @Component({
   selector: 'app-save-project',
@@ -9,11 +11,20 @@ export class SaveProjectComponent {
   projectName: string = '';
   revenue: number = 0;
 
-  onSubmit() {
-    console.log('Project Name:', this.projectName);
-    console.log('Revenue:', this.revenue);
+  constructor(private projectService: ProjectService) { 
+  }
 
-    this.projectName = '';
-    this.revenue = 0;
+  
+
+  onSubmit() {
+    const projectId = Math.floor(Math.random() * 1000);
+
+    const newProj = new Project(projectId, this.projectName, this.revenue, false)
+
+    this.projectService.addProject(newProj).subscribe((res) => {
+      this.projectName = '';
+      this.revenue = 0;
+      console.log(res)
+    });
   }
 }

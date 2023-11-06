@@ -35,6 +35,11 @@ export class ProjectService {
     );
   }
 
+  addProject(project: Project): Observable<Project> {
+    // console.log(project);
+    return this.http.post<Project>(this.apiUrl, project);
+  }
+
 }
 
 
