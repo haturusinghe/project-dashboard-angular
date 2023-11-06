@@ -37,15 +37,7 @@
           </button>
         </div>
       </div>
-      <ng-container *ngIf="showComponentStatus === 'LIST'">
-        <app-project-list class="dash-content-area-content"></app-project-list>
-      </ng-container>
-      <ng-container *ngIf="showComponentStatus === 'DASH'">
-        <app-dashboard class="dash-content-area-content"></app-dashboard>
-      </ng-container>
-      <ng-container *ngIf="showComponentStatus === 'ADD'">
-        <app-save-project class="dash-content-area-content"></app-save-project>
-      </ng-container>
+      <div class="dash-content-area-content"><router-outlet ></router-outlet></div>
     </div>
   </div>
 </div>
