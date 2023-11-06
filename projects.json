@@ -8,6 +8,5 @@
     { "id": 6, "name": "Project Synergy", "revenue": 12456.0, "isCompleted": false },
     { "id": 7, "name": "Dynamic Program", "revenue": 1564.5, "isCompleted": true },
     { "id": 8, "name": "Project ZenSen", "revenue": 12312.75, "isCompleted": false }
-  ],
-  "version": "1.0.1"
+  ]
 }
