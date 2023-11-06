@@ -5,17 +5,26 @@ import { map } from 'rxjs/operators';
 import { Project } from 'src/app/models/project.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:3000/projects';
+  private apiUrl = 'http://localhost:5001/api/v1/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
+    const endpoint = 'projects/all';
+    return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
       map((projectsData: any[]) => {
-        return projectsData.map(project => new Project(project.id, project.name, project.revenue, project.isCompleted));
+        return projectsData.map(
+          (project) =>
+            new Project(
+              project.id,
+              project.name,
+              project.revenue,
+              project.isCompleted
+            )
+        );
       })
     );
   }
@@ -26,22 +35,25 @@ export class ProjectService {
   }
 
   getTopProjectsByRevenue(count: number = 3): Observable<Project[]> {
-    return this.http.get<Project[]>(this.apiUrl).pipe(
-      map(projects => projects
-        .filter(project => project.revenue > 0)
-        .sort((a, b) => b.revenue - a.revenue)
-        .slice(0, count)
-      )
+    const endpoint = 'projects/top';
+    return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
+      map((projectsData: any[]) => {
+        return projectsData.map(
+          (project) =>
+            new Project(
+              project.id,
+              project.name,
+              project.revenue,
+              project.isCompleted
+            )
+        );
+      })
     );
   }
 
   addProject(project: Project): Observable<Project> {
-    // console.log(project);
-    return this.http.post<Project>(this.apiUrl, project);
+    console.log(project);
+    const endpoint = 'projects/save';
+    return this.http.post<Project>(this.apiUrl + endpoint, project);
   }
-
 }
-
-
-
-
