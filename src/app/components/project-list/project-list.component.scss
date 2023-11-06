@@ -1,11 +1,19 @@
-/* RESET */
+$primary: #404258;
+$secondary: #474E68;
+$tertiary: #6B728E;
+$neutral: #ffffff;
+$gradient-1: linear-gradient(0deg, #{$primary} 0%, #{$secondary} 33%, #50577a 66%, #{$tertiary} 100%);
+$gradient-2: linear-gradient(62deg, #{$neutral} 0%, #f0f0f0 100%);
+$gradient-3: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
+$gradient-4: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+$gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 
   /* PROJECT LIST PAGE ELEMENTS */
   
   .project-table-background {
     border-radius: 1em !important;
-    background-color: var(--neutral);
-    border: 1px solid var(--tertiary);
+    background-color: $neutral;
+    border: 1px solid $tertiary;
     padding: 1em;
   }
   
