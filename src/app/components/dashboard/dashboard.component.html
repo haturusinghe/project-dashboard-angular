@@ -3,6 +3,13 @@
     <div class="widget-header">
       <h4>Top Projects</h4>
     </div>
-    <div class="widget-area" id="top-projects-widget-body"></div>
+    <div class="widget-area" id="top-projects-widget-body">
+      <div class="card top-project-card" *ngFor="let project of topProjects">
+        <div class="card-body">
+          <h6 class="card-title">{{project.name}}</h6>
+          <h6 class="card-subtitle">{{project.revenue}}</h6>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -25,6 +25,16 @@ export class ProjectService {
     return this.http.delete<string>(deleteUrl);
   }
 
+  getTopProjectsByRevenue(count: number = 3): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiUrl).pipe(
+      map(projects => projects
+        .filter(project => project.revenue > 0)
+        .sort((a, b) => b.revenue - a.revenue)
+        .slice(0, count)
+      )
+    );
+  }
+
 }
 
 
