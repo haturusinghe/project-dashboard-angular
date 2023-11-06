@@ -68,7 +68,8 @@
               "browserTarget": "project-dashboard-angular:build:production"
             },
             "development": {
-              "browserTarget": "project-dashboard-angular:build:development"
+              "browserTarget": "project-dashboard-angular:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
