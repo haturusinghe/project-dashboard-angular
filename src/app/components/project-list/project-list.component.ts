@@ -20,6 +20,12 @@ export class ProjectListComponent implements OnInit {
       console.log(this.projects);
     });
   }
+
+  deleteProject(projectId: number): void {
+    this.projectService.deleteProject(projectId).subscribe(() => {
+      this.projects = this.projects.filter(project => project.id !== projectId);
+    });
+  }
 }
 
 
