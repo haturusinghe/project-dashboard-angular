@@ -1,18 +1,26 @@
 <div class="dash-container">
-    <app-sidebar class="dash-sidebar"></app-sidebar>
-    <div class="dash-main-area">
-        <app-top-bar class="dash-top-bar"></app-top-bar>
+  <app-sidebar class="dash-sidebar"></app-sidebar>
+  <div class="dash-main-area">
+    <app-top-bar class="dash-top-bar"></app-top-bar>
 
-        <div class="dash-content-area">
-            <div class="dash-content-area-header">
-              <h1>Project List</h1>
-              <button class="btn btn-dark" id="backToDashBtn">
-                Go to Dashboard
-              </button>
-            </div>
-            <app-project-list class="dash-content-area-content"></app-project-list>
-          </div>
-
-        
+    <div class="dash-content-area">
+      <div class="dash-content-area-header">
+        <h1>{{ showProjectList ? "Project List" : "Dashboard" }}</h1>
+        <button
+          class="btn btn-dark"
+          id="toggleViewBtn"
+          (click)="toggleView()"
+          id="backToDashBtn"
+        >
+          {{buttonTitle}}
+        </button>
+      </div>
+      <ng-container *ngIf="showProjectList">
+        <app-project-list class="dash-content-area-content"></app-project-list>
+      </ng-container>
+      <ng-container *ngIf="!showProjectList">
+        <app-dashboard class="dash-content-area-content"></app-dashboard>
+      </ng-container>
     </div>
   </div>
+</div>

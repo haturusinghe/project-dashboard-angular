@@ -1,14 +1,18 @@
 $primary: #404258;
-$secondary: #474E68;
-$tertiary: #6B728E;
+$secondary: #474e68;
+$tertiary: #6b728e;
 $neutral: #ffffff;
-$gradient-1: linear-gradient(0deg, #{$primary} 0%, #{$secondary} 33%, #50577a 66%, #{$tertiary} 100%);
+$gradient-1: linear-gradient(
+  0deg,
+  #{$primary} 0%,
+  #{$secondary} 33%,
+  #50577a 66%,
+  #{$tertiary} 100%
+);
 $gradient-2: linear-gradient(62deg, #{$neutral} 0%, #f0f0f0 100%);
 $gradient-3: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 $gradient-4: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
-
-
 
 .dash-sidebar {
   background-color: $primary;
@@ -18,95 +22,86 @@ $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   padding: 1.5em;
 }
 
-
 .dash-container {
-    display: grid;
-    gap: 0px 0px;
-    height: 100vh;
-  }
-  
-  /* For small scrreen */
-  @media screen and (max-width: 992px) {
-    .dash-container {
-      grid-template-columns: 100%;
-      grid-template-rows: 100% 20%;
-      grid-auto-flow: column;
-      grid-template-areas: 
+  display: grid;
+  gap: 0px 0px;
+  height: 100vh;
+}
+
+/* For small scrreen */
+@media screen and (max-width: 992px) {
+  .dash-container {
+    grid-template-columns: 100%;
+    grid-template-rows: 100% 20%;
+    grid-auto-flow: column;
+    grid-template-areas:
       "main-area"
-      "sidebar" 
-      
-      ;
-    }
+      "sidebar";
   }
-  
-  /* For big scrreen */
-  @media screen and (min-width: 992px) {
-    .dash-container {
-      grid-template-columns: 20% 80%;
-      grid-template-rows: 100%;
-      grid-auto-flow: row;
-      grid-template-areas: "sidebar main-area";
-    }
-  }
-  
-  .dash-sidebar {
-    grid-area: sidebar;
-  }
-  
-  .dash-main-area {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 10% 90%;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "top-bar"
-      "content-area";
-    grid-area: main-area;
-  }
-  
-  .dash-top-bar {
-    grid-area: top-bar;
-    background-color: $secondary;
-  }
-  
-  .dash-content-area {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 15% 85%;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "content-area-header"
-      "content-area-content";
-    grid-area: content-area;
-    
-  }
+}
 
-  .dash-content-area {
-    /* background-color: #8ec5fc; */
-    background-image: $gradient-4;
+/* For big scrreen */
+@media screen and (min-width: 992px) {
+  .dash-container {
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+    grid-auto-flow: row;
+    grid-template-areas: "sidebar main-area";
   }
+}
 
-  
-  
-  
-  .dash-content-area-header {
-    grid-area: content-area-header;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .dash-content-area-content {
-    grid-area: content-area-content;
-    overflow-y: auto;
-  }
-  
-  
-  
-  /* Responsive */
-  
-  #backToDashBtn,
+.dash-sidebar {
+  grid-area: sidebar;
+}
+
+.dash-main-area {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 90%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "top-bar"
+    "content-area";
+  grid-area: main-area;
+}
+
+.dash-top-bar {
+  grid-area: top-bar;
+  background-color: $secondary;
+}
+
+.dash-content-area {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 15% 85%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "content-area-header"
+    "content-area-content";
+  grid-area: content-area;
+}
+
+.dash-content-area {
+  /* background-color: #8ec5fc; */
+  background-image: $gradient-4;
+}
+
+.dash-content-area-header {
+  grid-area: content-area-header;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dash-content-area-content {
+  grid-area: content-area-content;
+  overflow-y: auto;
+}
+
+/* Responsive */
+
+#backToDashBtn,
 #backToProjectListBtn {
   height: 50px;
 }
@@ -126,19 +121,19 @@ $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   border-color: var(--primary);
 }
 
-.btn-danger{
+.btn-danger {
   color: #fff;
   background-color: #ff0000;
   border: 1px solid #ff0000;
 }
 
-.btn-light{
+.btn-light {
   color: #0000;
   background-color: #ebedee;
   border: 1px solid #ebedee;
 }
 
-.btn-dark{
+.btn-dark {
   color: #fff;
   background-color: #343434;
   border: 1px solid #343434;

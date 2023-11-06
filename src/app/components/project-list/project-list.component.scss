@@ -1,75 +1,78 @@
 $primary: #404258;
-$secondary: #474E68;
-$tertiary: #6B728E;
+$secondary: #474e68;
+$tertiary: #6b728e;
 $neutral: #ffffff;
-$gradient-1: linear-gradient(0deg, #{$primary} 0%, #{$secondary} 33%, #50577a 66%, #{$tertiary} 100%);
+$gradient-1: linear-gradient(
+  0deg,
+  #{$primary} 0%,
+  #{$secondary} 33%,
+  #50577a 66%,
+  #{$tertiary} 100%
+);
 $gradient-2: linear-gradient(62deg, #{$neutral} 0%, #f0f0f0 100%);
 $gradient-3: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 $gradient-4: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 
-  /* PROJECT LIST PAGE ELEMENTS */
-  
-  .project-table-background {
-    border-radius: 1em !important;
-    background-color: $neutral;
-    border: 1px solid $tertiary;
-    padding: 1em;
-  }
-  
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  
-  th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  
-  .text-center{
-    text-align: center; 
-  }
-  
-  .option-holder{
-    margin: 1em 0 1em 0;
-  }
-  
-  
-  .btn {
-    display: inline-block;
-    padding: 0.375rem 0.75rem;
-    font-weight: 400;
-    line-height: 1.5;
-    border-radius: 0.25rem;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .btn:hover {
-    background-color: var(--primary);
-    border-color: var(--primary);
-  }
-  
-  .btn-danger{
-    color: #fff;
-    background-color: #ff0000;
-    border: 1px solid #ff0000;
-  }
-  
-  .btn-light{
-    color: #0000;
-    background-color: #ebedee;
-    border: 1px solid #ebedee;
-  }
-  
-  .btn-dark{
-    color: #fff;
-    background-color: #343434;
-    border: 1px solid #343434;
-  }
+/* PROJECT LIST PAGE ELEMENTS */
+
+.project-table-background {
+  border-radius: 1em !important;
+  background-color: $neutral;
+  border: 1px solid $tertiary;
+  padding: 1em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.option-holder {
+  margin: 1em 0 1em 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
+.btn-light {
+  color: #0000;
+  background-color: #ebedee;
+  border: 1px solid #ebedee;
+}
+
+.btn-dark {
+  color: #fff;
+  background-color: #343434;
+  border: 1px solid #343434;
+}
