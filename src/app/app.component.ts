@@ -18,11 +18,11 @@ export class AppComponent {
     if(this.showProjectList){
       this.showProjectList = false;
       this.showComponentStatus = "DASH";
-      this.buttonTitle = "Dashboard"
+      this.buttonTitle = "Project List"
     }else{
       this.showProjectList = true;
       this.showComponentStatus = "LIST";
-      this.buttonTitle = "Project List"
+      this.buttonTitle = "Dashboard"
     }
   }
 
