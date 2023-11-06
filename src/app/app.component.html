@@ -1,1 +1,18 @@
-<h1>{{title}}</h1>
+<div class="dash-container">
+    <app-sidebar class="dash-sidebar"></app-sidebar>
+    <div class="dash-main-area">
+        <app-top-bar class="dash-top-bar"></app-top-bar>
+
+        <div class="dash-content-area">
+            <div class="dash-content-area-header">
+              <h1>Project List</h1>
+              <button class="btn btn-dark" id="backToDashBtn">
+                Go to Dashboard
+              </button>
+            </div>
+            <app-project-list class="dash-content-area-content"></app-project-list>
+          </div>
+
+        
+    </div>
+  </div>

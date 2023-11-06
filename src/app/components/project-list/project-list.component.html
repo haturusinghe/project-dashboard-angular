@@ -1,1 +1,31 @@
-<p>project-list works!</p>
+
+    <div class="option-holder">
+      <button class="btn btn-dark" id="addBtn">Add New Project</button>
+    </div>
+  
+    <div class="project-table-background">
+      <table class="table project-table">
+        <thead>
+          <tr>
+            <th>Project ID</th>
+            <th>Project Name</th>
+            <th>Revenue (Rs.)</th>
+            <th>Status</th>
+            <th></th>
+            <!-- <th>Start Date</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projects">
+            <td>{{ project.id }}</td>
+            <td>{{ project.name }}</td>
+            <td>{{ project.revenue }}</td>
+            <td>{{ project.isCompleted ? "Completed" : "Ongoing" }}</td>
+            <td><!-- Add buttons or actions here if needed --></td>
+            <!-- <td>{{ project.startDate }}</td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  

@@ -9,15 +9,18 @@ import { Project } from 'src/app/models/project.model'
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent implements OnInit {
-  projects: Project[];
+  projects: Project[] = [];
 
   constructor(private projectService: ProjectService) { 
-    this.projects = []
   }
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe(data => {
-      this.projects = data;
+      this.projects = data
+      console.log(this.projects);
     });
   }
 }
+
+
+
