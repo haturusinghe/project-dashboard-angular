@@ -9,14 +9,27 @@ export class AppComponent {
   title = 'Project Management Dashboard';
 
   showProjectList: boolean = true;
-  buttonTitle: string = "Go to Dashboard"
+  showAddProject: boolean = false;
+
+  buttonTitle: string = "Dashboard"
+  showComponentStatus: string = "LIST"
 
   toggleView(): void {
-    this.showProjectList = !this.showProjectList;
     if(this.showProjectList){
-      this.buttonTitle = "Go to Dashboard"
+      this.showProjectList = false;
+      this.showComponentStatus = "DASH";
+      this.buttonTitle = "Dashboard"
     }else{
-      this.buttonTitle = "Go to Project List"
+      this.showProjectList = true;
+      this.showComponentStatus = "LIST";
+      this.buttonTitle = "Project List"
     }
+  }
+
+  showAddPage(): void {
+    this.showAddProject = true;
+    this.showComponentStatus = "ADD";
+    this.buttonTitle = "Project List"
+    this.showProjectList = false;
   }
 }

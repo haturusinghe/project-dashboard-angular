@@ -5,21 +5,46 @@
 
     <div class="dash-content-area">
       <div class="dash-content-area-header">
-        <h1>{{ showProjectList ? "Project List" : "Dashboard" }}</h1>
-        <button
-          class="btn btn-dark"
-          id="toggleViewBtn"
-          (click)="toggleView()"
-          id="backToDashBtn"
-        >
-          {{buttonTitle}}
-        </button>
+
+        <ng-container *ngIf="showComponentStatus === 'LIST'">
+          <h1>{{ "Project List"  }}</h1>
+        </ng-container>
+        <ng-container *ngIf="showComponentStatus === 'DASH'">
+          <h1>{{ "Dashboard" }}</h1>
+        </ng-container>
+        <ng-container *ngIf="showComponentStatus === 'ADD'">
+          <h1>{{ "Add New Project" }}</h1>
+        </ng-container>
+
+        <div class="button-container">
+          <ng-container *ngIf="showProjectList">
+            <button
+              class="btn btn-dark"
+              id="toggleViewBtn"
+              (click)="showAddPage()"
+              id="backToDashBtn"
+            >
+              Add New Project
+            </button>
+          </ng-container>
+          <button
+            class="btn btn-dark"
+            id="toggleViewBtn"
+            (click)="toggleView()"
+            id="backToDashBtn"
+          >
+            Go To {{ buttonTitle }}
+          </button>
+        </div>
       </div>
-      <ng-container *ngIf="showProjectList">
+      <ng-container *ngIf="showComponentStatus === 'LIST'">
         <app-project-list class="dash-content-area-content"></app-project-list>
       </ng-container>
-      <ng-container *ngIf="!showProjectList">
+      <ng-container *ngIf="showComponentStatus === 'DASH'">
         <app-dashboard class="dash-content-area-content"></app-dashboard>
+      </ng-container>
+      <ng-container *ngIf="showComponentStatus === 'ADD'">
+        <app-save-project class="dash-content-area-content"></app-save-project>
       </ng-container>
     </div>
   </div>

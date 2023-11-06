@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SaveProjectComponent } from './components/save-project/save-project.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SaveProjectComponent } from './components/save-project/save-project.com
     SidebarComponent,
     TopBarComponent,
     DashboardComponent,
-    SaveProjectComponent
+    SaveProjectComponent,
+    AddProjectComponent
   ],
   imports: [
     HttpClientModule,

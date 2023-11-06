@@ -94,6 +94,11 @@ $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   justify-content: space-between;
 }
 
+.button-container{
+  display: flex;
+  gap: 10px;
+}
+
 .dash-content-area-content {
   grid-area: content-area-content;
   overflow-y: auto;
