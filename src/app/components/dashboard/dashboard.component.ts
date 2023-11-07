@@ -18,6 +18,12 @@ export class DashboardComponent implements OnInit {
       this.topProjects = data
       console.log(this.topProjects);
     });
+
+    this.projectService.getCompletedProjects().subscribe(data => {
+      console.log("Completed", data);
+    });
+
+    
   }
 
 }
