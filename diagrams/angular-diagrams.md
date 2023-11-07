@@ -5,44 +5,6 @@
 ```plantuml
 
 @startuml
-title Loading Game Background
-hide footbox
-
-actor User
-participant GameLauncher as GL
-participant Game as GE
-
-User -> GL: main()
-activate GL
-GL -> GE: start()
-activate GE
-GE -> GE: createWindow()
-
-
-```
-
-```plantuml
-
-@startuml
-title Loading Game Background
-hide footbox
-
-actor User
-participant GameLauncher as GL
-participant Game as GE
-
-User -> GL: load()
-activate GL
-GL -> GE: init()
-activate GE
-GE -> GE: createWindow()
-
-
-```
-
-```plantuml
-
-@startuml
 title Angular Frontend
 hide footbox
 
@@ -122,3 +84,51 @@ deactivate PSC
 
 ```
 
+### Class Diagram
+
+```plantuml
+
+@startuml
+
+class Project {
+  - id: number
+  - name: string
+  - revenue: number
+  - isCompleted: boolean
+}
+
+class ProjectService {
+  - apiUrl: string
+  + getProjects(): Observable<Project[]>
+  + deleteProject(id: number): Observable<string>
+  + getTopProjectsByRevenue(count: number): Observable<Project[]>
+  + getCompletedProjects(): Observable<Project[]>
+  + addProject(project: Project): Observable<Project>
+}
+
+class ProjectListComponent {
+  - projects: Project[]
+  + ngOnInit(): void
+  + handleDeleteButtonPress(projectId: number): void
+}
+
+class DashboardComponent {
+  - topProjects: Project[]
+  + ngOnInit(): void
+  + alertCompletedProjects(projects: Project[]): void
+}
+
+class SaveProjectComponent {
+  - projectName: string
+  - revenue: number
+  + handleFormSubmit(): void
+}
+
+ProjectListComponent --|> ProjectService
+DashboardComponent --|> ProjectService
+SaveProjectComponent --|> ProjectService
+
+@enduml
+
+
+```
