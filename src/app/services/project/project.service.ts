@@ -31,7 +31,7 @@ export class ProjectService {
 
   deleteProject(id: number): Observable<string> {
     const endpoint = 'projects/delete';
-    return this.http.post<string>(this.apiUrl + endpoint, {id:id});
+    return this.http.delete<string>(this.apiUrl + endpoint + '/' + id);
   }
 
   getTopProjectsByRevenue(count: number = 3): Observable<Project[]> {
