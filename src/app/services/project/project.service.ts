@@ -51,6 +51,23 @@ export class ProjectService {
     );
   }
 
+  getCompletedProjects(): Observable<Project[]> {
+    const endpoint = 'projects/completed';
+    return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
+      map((projectsData: any[]) => {
+        return projectsData.map(
+          (project) =>
+            new Project(
+              project.id,
+              project.name,
+              project.revenue,
+              project.isCompleted
+            )
+        );
+      })
+    );
+  }
+
   addProject(project: Project): Observable<Project> {
     console.log(project);
     const endpoint = 'projects/save';
