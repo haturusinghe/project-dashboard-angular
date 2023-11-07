@@ -1,3 +1,5 @@
+![Alt text](image-12.png)
+
 # Angular Sequence Diagrams
 
 ## Project List
@@ -9,11 +11,35 @@ title Display Project List (Angular)
 hide footbox
 
 actor User
+participant DashboardComponent as DC
 
 participant ProjectListComponent as PLC
-participant DashboardComponent as DC
+
+participant ProjectSaveComponent as PSC
+
 participant ProjectService as PS
-participant BackendAPI as BE
+participant Server as BE
+participant ProjectController as PC
+
+User -> DC: ngOnInit()
+activate DC
+DC -> PS: getTopProjectsByRevenue()
+activate PS
+PS -> BE: HTTP GET request for projects data
+BE --> PC: getTopProjectsByRevenue()
+PC --> BE: Project[]
+BE --> PS: JSON projects data from backend
+PS --> DC: Observable<Project[]>
+
+
+DC -> PS: getCompletedProjects()
+PS -> BE: HTTP GET request for projects data
+BE --> PC: getCompletedProjects()
+PC --> BE: Project[]
+BE --> PS: JSON projects data from backend
+PS --> DC: Observable<Project[]>
+deactivate PS
+deactivate DC
 
 
 User -> PLC: ngOnInit()
@@ -21,9 +47,38 @@ activate PLC
 PLC -> PS: getProjects()
 activate PS
 PS -> BE: HTTP GET request for projects data
+BE --> PC: getProjects()
+PC --> BE: Project[]
 BE --> PS: JSON projects data from backend
 PS --> PLC: Observable<Project[]>
 deactivate PS
+
+User -> PLC: handleDeleteButtonPress()
+PLC -> PS: deleteProject()
+activate PS
+PS -> BE: HTTP DELETE request for project data
+BE --> PC: deleteProject()
+PC --> BE: String
+BE --> PS: JSON string from backend
+PS --> PLC: Observable<string>
+deactivate PS
+
+deactivate PLC
+
+User -> PSC: ngOnInit()
+activate PSC
+User -> PSC: handleSaveButtonPress()
+PSC -> PS: addProject()
+activate PS
+PS -> BE: HTTP POST request for project data
+BE --> PC: addProject()
+PC --> BE: Project
+BE --> PS: JSON project data from backend
+PS --> PSC: Observable<Project>
+deactivate PS
+
+deactivate PSC
+
 
 
 
@@ -31,10 +86,10 @@ deactivate PS
 
 ```
 
-###
+### Class Diagram for Angular Frontend
 ```plantuml
 @startuml
-left to right direction
+top to bottom direction
 
 class ProjectService{
     +getProjects(): Observable<Project[]>
@@ -67,57 +122,17 @@ ProjectService --> Project
 ```
 
 
-# Old
-
-## Sequence Diagram
-
-```plantuml
-
-@startuml
-title Display Project List
-hide footbox
-
-actor User
-
-participant "Project List Page" as ProjectListPage
-participant "Project Service" as DS
-
-
-
-User -> ProjectListPage: init()
-activate ProjectListPage
-
-
-activate DS
-ProjectListPage -> DS: getProjectList()
-
-DS --> ProjectListPage: Project[]
-ProjectListPage -> ProjectListPage: displayList(list:Project[])
-
-alt Projects not available
-DS --> ProjectListPage: []
-ProjectListPage -> ProjectListPage: displayMsg("No Projects Available")
-end
-
-
-deactivate DS
-
-
-@enduml
-
-```
-
-## Sequence diagram to Class Diagram
-
+### Class Diagram for Angular Frontend (All)
 ```plantuml
 @startuml
-left to right direction
+top to bottom direction
 
 class ProjectService{
-    +init(): void
-    -projectList: Project[]
-    +getProjectList(): Project[]
-    +getCompletedProjectList(): Project[]
+    +getProjects(): Observable<Project[]>
+    +deleteProject(id: number): Observable<string>
+    +getTopProjectsByRevenue(count: number): Observable<Project[]>
+    +getCompletedProjects(): Observable<Project[]>
+    +addProject(project: Project): Observable<Project>
 }
 
 class Project{
@@ -126,20 +141,35 @@ class Project{
     -startDate: Date
     -revenue: double
     -isOngoing: boolean
-    --
-    // getters , setters
 }
 
-class ProjectListPage{
-    +init(): void
-    +displayList(list:Project[]): void
-    +displayMsg(message: String): void
+class ProjectListComponent{
+    -projects: Project[]
+    +ngOnInit(): void
+    +handleDeleteButtonPress(projectId: number): void
+}
+
+class DashboardComponent{
+    -topProjects: Project[]
+    +ngOnInit(): void
+    +alertCompletedProjects(data: Project[]): void
+}
+
+class SaveProjectComponent{
+    +ngOnInit(): void
 }
 
 
 
 
-ProjectListPage --> ProjectService
+ProjectListComponent --> ProjectService
+DashboardComponent --> ProjectService
+SaveProjectComponent --> ProjectService
+
+ProjectListComponent --> Project
+DashboardComponent --> Project
+SaveProjectComponent --> Project
+
 ProjectService --> Project
 
 
@@ -150,65 +180,33 @@ ProjectService --> Project
 ```
 
 
-## Complete Class Diagram for P.M System
-
+### Class Diagram for NodeJS Backend
 ```plantuml
 @startuml
 left to right direction
 
-
-class ProjectService{
-    
-    +init(): void
-    -projectList: Project[]
-    +getProjectList(): Project[]
-    +deleteProject(projectId: int): boolean
-    +getTopRevenueProjects(count:int): Project[]
-    +doesProjectExist(projectId: int): boolean
-    +saveProject(name:String, revanue:double): boolean
-    
+class ProjectController{
+    +getProjects(): Project[]
 }
 
 class Project{
-    -projectId: int
+    -projectId: String
     -projectName: String
     -startDate: Date
     -revenue: double
-    -isCompleted: boolean
-    --
-    // getters , setters
+    -isOngoing: boolean
 }
 
-class ProjectListPage{
-    +init(): void
-    +displayList(list:Project[]): void
-    +displayMsg(message: String): void
+class Server{
+
 }
 
-
-class Dashboard{
-    -topProjects:Project[]
-    +init(): void
-    +showAlert(completedProjects:Project[]): void
-    +displayTopProjects(): void
-}
-
-class ProjectSavePage{
-    -name:String
-    -revanue:double
-    +displayMsg(message: String): void
-}
-
-
-
-ProjectSavePage --> ProjectService
-ProjectListPage --> ProjectService
-Dashboard --> ProjectService
-ProjectService --> Project
-
+Server --> ProjectController
+ProjectController --> Project
 
 
 @enduml
 
 
 ```
+
