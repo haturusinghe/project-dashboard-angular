@@ -28,6 +28,8 @@ export class SaveProjectComponent {
       this.revenue = 0;
       console.log(res)
 
+      alert(res)
+
       this.router.navigate(['/list']);
     });
   }

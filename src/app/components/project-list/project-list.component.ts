@@ -22,9 +22,13 @@ export class ProjectListComponent implements OnInit {
   }
 
   handleDeleteButtonPress(projectId: number): void {
-    this.projectService.deleteProject(projectId).subscribe(() => {
-      this.projects = this.projects.filter(project => project.id !== projectId);
-    });
+    if(confirm("Are you sure you want to delete this project?")) {
+      this.projectService.deleteProject(projectId).subscribe((data) => {
+        alert(`Project deleted successfully!,${data}`);
+        this.projects = this.projects.filter(project => project.id !== projectId);
+      });
+    }
+    
   }
 }
 
