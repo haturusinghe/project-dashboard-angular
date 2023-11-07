@@ -52,10 +52,10 @@ PS --> PLC: Observable<Project[]>
 deactivate PS
 
 User -> PLC: handleDeleteButtonPress()
-PLC -> PS: deleteProject()
+PLC -> PS: deleteProject(id)
 activate PS
 PS -> BE: HTTP DELETE 
-BE --> PC: deleteProject()
+BE --> PC: deleteProject(id)
 PC --> BE: String
 BE --> PS: JSON 
 PS --> PLC: Observable<string>
@@ -65,7 +65,7 @@ deactivate PLC
 
 User -> PSC: ngOnInit()
 activate PSC
-User -> PSC: handleSaveButtonPress()
+User -> PSC: handleFormSubmit()
 PSC -> PS: addProject()
 activate PS
 PS -> BE: HTTP POST 
@@ -84,7 +84,7 @@ deactivate PSC
 
 ```
 
-### Class Diagram
+### Class Diagram for Front End
 
 ```plantuml
 
@@ -127,6 +127,39 @@ class SaveProjectComponent {
 ProjectListComponent --|> ProjectService
 DashboardComponent --|> ProjectService
 SaveProjectComponent --|> ProjectService
+
+@enduml
+
+
+```
+### Class Diagram for Back End
+
+```plantuml
+
+@startuml
+class ProjectController {
+  +getAllProjects(req, res)
+  +getTopPerformProjects(req, res)
+  +getCompletedProjects(req, res)
+  +createProject(req, res)
+  +deleteProject(req, res, pid)
+}
+
+class Server {
+  +handleRequest(req, res)
+  +listen()
+}
+
+class Project {
+  -id: int
+  -name: string
+  -revenue: int
+  -isCompleted: boolean
+}
+
+ProjectController --> Project 
+
+Server --> ProjectController 
 
 @enduml
 
