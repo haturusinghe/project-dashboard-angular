@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SaveProjectComponent } from './components/save-project/save-project.component';
 
 import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     SaveProjectComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, NoopAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
