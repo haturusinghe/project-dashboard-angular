@@ -1,29 +1,44 @@
-<div class="card">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="projectName" class="form-label">Project Name</label>
-        <input
-          type="text"
-          class="form-control"
-          id="projectName"
-          required
-          [(ngModel)]="projectName"
-          name="projectName"
-        />
-      </div>
-      <div>
-        <label for="revenue" class="form-label">Revenue</label>
-        <input
-          type="number"
-          class="form-control"
-          id="revenue"
-          required
-          [(ngModel)]="revenue"
-          name="revenue"
-        />
-      </div>
-      <button type="submit" class="btn btn-dark">Add Project</button>
-    </form>
+<div class="dash-content-area-header">
+  <h1>{{ "Add Project" }}</h1>
+
+  <button
+    class="btn btn-dark"
+    id="toggleViewBtn"
+    id="backToDashBtn"
+    routerLink="/dashboard"
+  >
+    Go To Dashboard
+  </button>
+</div>
+
+<div class="dash-content-area-content">
+  <div class="card">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()">
+        <div>
+          <label for="projectName" class="form-label">Project Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="projectName"
+            required
+            [(ngModel)]="projectName"
+            name="projectName"
+          />
+        </div>
+        <div>
+          <label for="revenue" class="form-label">Revenue</label>
+          <input
+            type="number"
+            class="form-control"
+            id="revenue"
+            required
+            [(ngModel)]="revenue"
+            name="revenue"
+          />
+        </div>
+        <button type="submit" class="btn btn-dark">Add Project</button>
+      </form>
+    </div>
   </div>
 </div>

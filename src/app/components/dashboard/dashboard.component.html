@@ -1,15 +1,27 @@
-<div class="widget-row">
-  <div class="widget card">
-    <div class="widget-header">
-      <h4>Top Projects</h4>
-    </div>
-    <div class="widget-area" id="top-projects-widget-body">
-      <div class="card top-project-card" *ngFor="let project of topProjects">
-        <div class="card-body">
-          <h6 class="card-title">{{project.name}}</h6>
-          <h6 class="card-subtitle">Rs. {{project.revenue}}</h6>
+<div class="dash-content-area-header">
+  <h1>{{ "Dashboard" }}</h1>
+
+  <button class="btn btn-dark" id="toggleViewBtn" id="backToDashBtn" routerLink="/list">
+    Go To Project List
+  </button>
+</div>
+
+<div class="dash-content-area-content">
+  <div class="widget-row">
+    <div class="widget card">
+      <div class="widget-header">
+        <h4>Top Projects</h4>
+      </div>
+      <div class="widget-area" id="top-projects-widget-body">
+        <div class="card top-project-card" *ngFor="let project of topProjects">
+          <div class="card-body">
+            <h6 class="card-title">{{ project.name }}</h6>
+            <h6 class="card-subtitle">Rs. {{ project.revenue }}</h6>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

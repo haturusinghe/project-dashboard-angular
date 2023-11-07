@@ -14,6 +14,46 @@ $gradient-3: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
 $gradient-4: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 $gradient-5: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
 
+.dash-content-area {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 15% 85%;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "content-area-header"
+    "content-area-content";
+  grid-area: content-area;
+}
+
+.dash-content-area {
+  /* background-color: #8ec5fc; */
+  background-image: $gradient-4;
+}
+
+.dash-content-area-header {
+  grid-area: content-area-header;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container{
+  display: flex;
+  gap: 10px;
+}
+
+.dash-content-area-content {
+  grid-area: content-area-content;
+  overflow-y: auto;
+}
+
+/* Responsive */
+
+#backToDashBtn,
+#backToProjectListBtn {
+  height: 50px;
+}
+
 /* PROJECT LIST PAGE ELEMENTS */
 
 .project-table-background {
@@ -55,8 +95,8 @@ td {
 }
 
 .btn:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
+  background-color: $primary;
+  border-color: $primary;
 }
 
 .btn-danger {

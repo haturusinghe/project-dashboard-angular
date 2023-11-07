@@ -4,40 +4,7 @@
     <app-top-bar class="dash-top-bar"></app-top-bar>
 
     <div class="dash-content-area">
-      <div class="dash-content-area-header">
-
-        <ng-container *ngIf="showComponentStatus === 'LIST'">
-          <h1>{{ "Project List"  }}</h1>
-        </ng-container>
-        <ng-container *ngIf="showComponentStatus === 'DASH'">
-          <h1>{{ "Dashboard" }}</h1>
-        </ng-container>
-        <ng-container *ngIf="showComponentStatus === 'ADD'">
-          <h1>{{ "Add New Project" }}</h1>
-        </ng-container>
-
-        <div class="button-container">
-          <ng-container *ngIf="showProjectList">
-            <button
-              class="btn btn-dark"
-              id="toggleViewBtn"
-              (click)="showAddPage()"
-              id="backToDashBtn"
-            >
-              Add New Project
-            </button>
-          </ng-container>
-          <button
-            class="btn btn-dark"
-            id="toggleViewBtn"
-            (click)="toggleView()"
-            id="backToDashBtn"
-          >
-            Go To {{ buttonTitle }}
-          </button>
-        </div>
-      </div>
-      <div class="dash-content-area-content"><router-outlet ></router-outlet></div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

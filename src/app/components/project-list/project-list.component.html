@@ -1,29 +1,41 @@
-<div class="project-table-background">
-  <table class="table project-table">
-    <thead>
-      <tr>
-        <th>Project ID</th>
-        <th>Project Name</th>
-        <th>Revenue (Rs.)</th>
-        <th>Status</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let project of projects">
-        <td>{{ project.id }}</td>
-        <td>{{ project.name }}</td>
-        <td>{{ project.revenue }}</td>
-        <td>{{ project.isCompleted ? "Completed" : "Ongoing" }}</td>
-        <td>
-          <button
-            class="btn btn-danger btn-del-project"
-            (click)="deleteProject(project.id)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="dash-content-area-header">
+  <h1>{{ "Project List" }}</h1>
+
+  <button class="btn btn-dark" id="toggleViewBtn" id="backToDashBtn" routerLink="/dashboard">
+    Go To Dashboard
+  </button>
 </div>
+
+<div class="dash-content-area-content">
+  <div class="project-table-background">
+    <table class="table project-table">
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Project Name</th>
+          <th>Revenue (Rs.)</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td>{{ project.id }}</td>
+          <td>{{ project.name }}</td>
+          <td>{{ project.revenue }}</td>
+          <td>{{ project.isCompleted ? "Completed" : "Ongoing" }}</td>
+          <td>
+            <button
+              class="btn btn-danger btn-del-project"
+              (click)="deleteProject(project.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
