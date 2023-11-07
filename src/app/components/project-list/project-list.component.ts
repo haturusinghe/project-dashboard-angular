@@ -21,7 +21,7 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  deleteProject(projectId: number): void {
+  handleDeleteButtonPress(projectId: number): void {
     this.projectService.deleteProject(projectId).subscribe(() => {
       this.projects = this.projects.filter(project => project.id !== projectId);
     });

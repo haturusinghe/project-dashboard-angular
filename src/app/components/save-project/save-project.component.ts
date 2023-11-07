@@ -18,7 +18,7 @@ export class SaveProjectComponent {
 
   
 
-  onSubmit() {
+  handleFormSubmit() {
     const projectId = Math.floor(Math.random() * 1000);
 
     const newProj = new Project(projectId, this.projectName, this.revenue, false)
