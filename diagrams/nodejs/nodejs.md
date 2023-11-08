@@ -1,3 +1,5 @@
+## Class Diagram for Backend
+
 ```plantuml
 
 @startuml
@@ -14,14 +16,6 @@ class Server {
   +listen()
 }
 
-class Project {
-  -id: int
-  -name: string
-  -revenue: int
-  -isCompleted: boolean
-}
-
-ProjectController --> Project 
 
 Server --> ProjectController 
 

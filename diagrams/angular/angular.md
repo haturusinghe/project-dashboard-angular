@@ -1,6 +1,5 @@
 # Angular Sequence Diagrams
 
-
 ```plantuml
 
 @startuml
@@ -24,7 +23,7 @@ DC -> PS: getTopProjectsByRevenue()
 activate PS
 PS -> BE: HTTP GET 
 BE -> PC: getTopProjectsByRevenue()
-PC --> BE: Project[]
+PC --> BE: Object[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 
@@ -32,7 +31,7 @@ PS --> DC: Observable<Project[]>
 DC -> PS: getCompletedProjects()
 PS -> BE: HTTP GET 
 BE -> PC: getCompletedProjects()
-PC --> BE: Project[]
+PC --> BE: Object[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 DC -> DC: alertCompletedProjects(data: Project[]): void
@@ -46,7 +45,7 @@ PLC -> PS: getProjects()
 activate PS
 PS -> BE: HTTP GET 
 BE -> PC: getAllProjects()
-PC --> BE: Project[]
+PC --> BE: Object[]
 BE --> PS: JSON 
 PS --> PLC: Observable<Project[]>
 deactivate PS
@@ -70,7 +69,7 @@ PSC -> PS: addNewProject(Project)
 activate PS
 PS -> BE: HTTP POST 
 BE -> PC: createProject(Project)
-PC --> BE: Project
+PC --> BE: Object
 BE --> PS: JSON 
 PS --> PSC: Observable<Project>
 deactivate PS
@@ -87,7 +86,7 @@ deactivate PSC
 
 
 
-### Class Diagram for Angular Frontend (All)
+### Class Diagram 
 ```plantuml
 @startuml
 top to bottom direction
@@ -125,6 +124,21 @@ class SaveProjectComponent{
     +handleFormSubmit(): void
 }
 
+class ProjectController {
+  +getAllProjects(req, res)
+  +getTopPerformProjects(req, res)
+  +getCompletedProjects(req, res)
+  +createProject(req, res)
+  +deleteProject(req, res, pid)
+}
+
+class Server {
+  -handleRequest(req, res)
+  +listen()
+}
+
+
+Server --> ProjectController 
 
 
 
@@ -137,6 +151,7 @@ DashboardComponent --> Project
 SaveProjectComponent --> Project
 
 ProjectService --> Project
+ProjectService --> Server
 
 
 
