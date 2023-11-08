@@ -20,17 +20,23 @@ export class SaveProjectComponent {
 
   handleFormSubmit() {
 
-    const newProj = new Project(-1, this.projectName, this.revenue, false) 
-    // -1 is a placeholder for the id, backend will assign a unique id
+    if(this.projectName.length > 0){
+      const newProj = new Project(-1, this.projectName, this.revenue, false) 
+      // -1 is a placeholder for the id, backend will assign a unique id
+  
+      this.projectService.addProject(newProj).subscribe((res) => {
+        this.projectName = '';
+        this.revenue = 0;
+        console.log(res)
+  
+        alert(res)
+  
+        this.router.navigate(['/list']);
+      });
+    }else{
+      alert("Project Name cannot be empty")
+    }
 
-    this.projectService.addProject(newProj).subscribe((res) => {
-      this.projectName = '';
-      this.revenue = 0;
-      console.log(res)
-
-      alert(res)
-
-      this.router.navigate(['/list']);
-    });
+    
   }
 }
