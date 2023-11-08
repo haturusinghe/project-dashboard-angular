@@ -16,8 +16,6 @@ export class SaveProjectComponent {
   constructor(private projectService: ProjectService, private router: Router) { 
   }
 
-  
-
   handleFormSubmit() {
     const projectId = Math.floor(Math.random() * 1000);
 
