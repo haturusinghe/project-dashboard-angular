@@ -1,5 +1,3 @@
-![Alt text](image-12.png)
-
 # Angular Sequence Diagrams
 
 ## Project List
@@ -25,18 +23,18 @@ User -> DC: ngOnInit()
 activate DC
 DC -> PS: getTopProjectsByRevenue()
 activate PS
-PS -> BE: HTTP GET request for projects data
+PS -> BE: HTTP GET 
 BE --> PC: getTopProjectsByRevenue()
 PC --> BE: Project[]
-BE --> PS: JSON projects data from backend
+BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 
 
 DC -> PS: getCompletedProjects()
-PS -> BE: HTTP GET request for projects data
+PS -> BE: HTTP GET 
 BE --> PC: getCompletedProjects()
 PC --> BE: Project[]
-BE --> PS: JSON projects data from backend
+BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 deactivate PS
 deactivate DC
@@ -46,20 +44,20 @@ User -> PLC: ngOnInit()
 activate PLC
 PLC -> PS: getProjects()
 activate PS
-PS -> BE: HTTP GET request for projects data
-BE --> PC: getProjects()
+PS -> BE: HTTP GET 
+BE --> PC: getAllProjects()
 PC --> BE: Project[]
-BE --> PS: JSON projects data from backend
+BE --> PS: JSON 
 PS --> PLC: Observable<Project[]>
 deactivate PS
 
 User -> PLC: handleDeleteButtonPress()
 PLC -> PS: deleteProject()
 activate PS
-PS -> BE: HTTP DELETE request for project data
+PS -> BE: HTTP DELETE 
 BE --> PC: deleteProject()
 PC --> BE: String
-BE --> PS: JSON string from backend
+BE --> PS: JSON 
 PS --> PLC: Observable<string>
 deactivate PS
 
@@ -67,13 +65,13 @@ deactivate PLC
 
 User -> PSC: ngOnInit()
 activate PSC
-User -> PSC: handleSaveButtonPress()
-PSC -> PS: addProject()
+User -> PSC: handleFormSubmit()
+PSC -> PS: addNewProject(Project)
 activate PS
-PS -> BE: HTTP POST request for project data
-BE --> PC: addProject()
+PS -> BE: HTTP POST 
+BE --> PC: createProject(Project)
 PC --> BE: Project
-BE --> PS: JSON project data from backend
+BE --> PS: JSON 
 PS --> PSC: Observable<Project>
 deactivate PS
 
