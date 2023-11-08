@@ -1,6 +1,5 @@
 # Angular Sequence Diagrams
 
-## Project List
 
 ```plantuml
 
@@ -24,7 +23,7 @@ activate DC
 DC -> PS: getTopProjectsByRevenue()
 activate PS
 PS -> BE: HTTP GET 
-BE --> PC: getTopProjectsByRevenue()
+BE -> PC: getTopProjectsByRevenue()
 PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
@@ -32,20 +31,21 @@ PS --> DC: Observable<Project[]>
 
 DC -> PS: getCompletedProjects()
 PS -> BE: HTTP GET 
-BE --> PC: getCompletedProjects()
+BE -> PC: getCompletedProjects()
 PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
+DC -> DC: alertCompletedProjects(data: Project[]): void
 deactivate PS
-deactivate DC
 
 
 User -> PLC: ngOnInit()
+deactivate DC
 activate PLC
 PLC -> PS: getProjects()
 activate PS
 PS -> BE: HTTP GET 
-BE --> PC: getAllProjects()
+BE -> PC: getAllProjects()
 PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> PLC: Observable<Project[]>
@@ -55,7 +55,7 @@ User -> PLC: handleDeleteButtonPress()
 PLC -> PS: deleteProject()
 activate PS
 PS -> BE: HTTP DELETE 
-BE --> PC: deleteProject()
+BE -> PC: deleteProject()
 PC --> BE: String
 BE --> PS: JSON 
 PS --> PLC: Observable<string>
@@ -69,7 +69,7 @@ User -> PSC: handleFormSubmit()
 PSC -> PS: addNewProject(Project)
 activate PS
 PS -> BE: HTTP POST 
-BE --> PC: createProject(Project)
+BE -> PC: createProject(Project)
 PC --> BE: Project
 BE --> PS: JSON 
 PS --> PSC: Observable<Project>
@@ -122,6 +122,7 @@ class DashboardComponent{
 
 class SaveProjectComponent{
     +ngOnInit(): void
+    +handleFormSubmit(): void
 }
 
 
@@ -143,35 +144,3 @@ ProjectService --> Project
 
 
 ```
-
-
-### Class Diagram for NodeJS Backend
-```plantuml
-@startuml
-left to right direction
-
-class ProjectController{
-    +getProjects(): Project[]
-}
-
-class Project{
-    -projectId: String
-    -projectName: String
-    -startDate: Date
-    -revenue: double
-    -isOngoing: boolean
-}
-
-class Server{
-
-}
-
-Server --> ProjectController
-ProjectController --> Project
-
-
-@enduml
-
-
-```
-

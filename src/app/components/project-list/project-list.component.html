@@ -36,6 +36,9 @@
             </button>
           </td>
         </tr>
+        <tr *ngIf="projects.length === 0">
+          <td colspan="5" class="text-center">No Projects Found</td>
+        </tr>
       </tbody>
     </table>
   </div>
