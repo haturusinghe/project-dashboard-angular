@@ -55,4 +55,37 @@ deactivate PS
 
 ```
 
+### Class Diagram for Angular Frontend
+```plantuml
+@startuml
+top to bottom direction
 
+class ProjectService{
+    +getProjects(): Observable<Project[]>
+}
+
+class Project{
+    -projectId: String
+    -projectName: String
+    -startDate: Date
+    -revenue: double
+    -isOngoing: boolean
+}
+
+class ProjectListComponent{
+    -projects: Project[]
+    +ngOnInit(): void
+}
+
+
+
+
+ProjectListComponent --> ProjectService
+ProjectService --> Project
+
+
+
+@enduml
+
+
+```
