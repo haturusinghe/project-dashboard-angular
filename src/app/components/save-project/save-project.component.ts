@@ -19,9 +19,9 @@ export class SaveProjectComponent {
   
 
   handleFormSubmit() {
-    const projectId = Math.floor(Math.random() * 1000);
 
-    const newProj = new Project(projectId, this.projectName, this.revenue, false)
+    const newProj = new Project(-1, this.projectName, this.revenue, false) 
+    // -1 is a placeholder for the id, backend will assign a unique id
 
     this.projectService.addProject(newProj).subscribe((res) => {
       this.projectName = '';
