@@ -16,8 +16,6 @@ export class SaveProjectComponent {
   constructor(private projectService: ProjectService, private router: Router) { 
   }
 
-  
-
   handleFormSubmit() {
 
     const newProj = new Project(-1, this.projectName, this.revenue, false) 
