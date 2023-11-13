@@ -120,11 +120,14 @@ class DashboardComponent{
 }
 
 class SaveProjectComponent{
+    -projectName: String
+    -revenue: double
     +ngOnInit(): void
     +handleFormSubmit(): void
 }
 
 class ProjectController {
+    -projects : Project[]
   +getAllProjects(req, res)
   +getTopPerformProjects(req, res)
   +getCompletedProjects(req, res)
