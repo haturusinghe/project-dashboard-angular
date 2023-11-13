@@ -1,7 +1,12 @@
 <div class="dash-content-area-header">
   <h1>{{ "Dashboard" }}</h1>
 
-  <button class="btn btn-dark" id="toggleViewBtn" id="backToDashBtn" routerLink="/list">
+  <button
+    class="btn btn-dark"
+    id="toggleViewBtn"
+    id="backToDashBtn"
+    routerLink="/list"
+  >
     Go To Project List
   </button>
 </div>
@@ -12,7 +17,11 @@
       <div class="widget-header">
         <h3>Top Projects</h3>
       </div>
-      <div class="widget-area" id="top-projects-widget-body">
+      <div
+        *ngIf="topProjects.length > 0; else noProjectsMessage"
+        class="widget-area"
+        id="top-projects-widget-body"
+      >
         <div class="card top-project-card" *ngFor="let project of topProjects">
           <div class="card-body">
             <h6 class="card-title">{{ project.name }}</h6>
@@ -20,8 +29,11 @@
           </div>
         </div>
       </div>
+      <ng-template #noProjectsMessage>
+        <div class="widget-area" id="top-projects-widget-body">
+          <p>No top projects are available.</p>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
-
-
