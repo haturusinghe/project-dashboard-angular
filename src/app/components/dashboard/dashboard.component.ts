@@ -14,12 +14,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.projectService.getTopProjectsByRevenue(3).subscribe((data) => {
-      this.topProjects = data;
-      console.log(this.topProjects);
+      this.topProjects = data;  
+      console.log(data);
     });
 
     this.projectService.getCompletedProjects().subscribe((data) => {
       this.alertCompletedProjects(data);
+      console.log(data);
     });
   }
 
