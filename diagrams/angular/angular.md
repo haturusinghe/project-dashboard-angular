@@ -23,7 +23,7 @@ DC -> PS: getTopProjectsByRevenue()
 activate PS
 PS -> BE: HTTP GET 
 BE -> PC: getTopProjectsByRevenue()
-PC --> BE: Object[]
+PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 
@@ -31,7 +31,7 @@ PS --> DC: Observable<Project[]>
 DC -> PS: getCompletedProjects()
 PS -> BE: HTTP GET 
 BE -> PC: getCompletedProjects()
-PC --> BE: Object[]
+PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> DC: Observable<Project[]>
 DC -> DC: alertCompletedProjects(data: Project[]): void
@@ -45,7 +45,7 @@ PLC -> PS: getProjects()
 activate PS
 PS -> BE: HTTP GET 
 BE -> PC: getAllProjects()
-PC --> BE: Object[]
+PC --> BE: Project[]
 BE --> PS: JSON 
 PS --> PLC: Observable<Project[]>
 deactivate PS
@@ -132,13 +132,9 @@ class ProjectController {
   +deleteProject(req, res, pid)
 }
 
-class Server {
-  -handleRequest(req, res)
-  +listen()
-}
 
 
-Server --> ProjectController 
+
 
 
 
@@ -151,7 +147,8 @@ DashboardComponent --> Project
 SaveProjectComponent --> Project
 
 ProjectService --> Project
-ProjectService --> Server
+ProjectController --> Project
+
 
 
 
