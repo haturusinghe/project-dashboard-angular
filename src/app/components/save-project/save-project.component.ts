@@ -10,27 +10,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./save-project.component.scss'],
 })
 export class SaveProjectComponent {
-  projectName: string = '';
-  revenue: number = 0;
+  newProject: Project;
 
   constructor(private projectService: ProjectService, private router: Router) { 
+    this.newProject = new Project()
   }
 
   
 
   handleFormSubmit() {
 
-    if(this.projectName.length > 0){
-      const newProj = new Project(-1, this.projectName, this.revenue, false) 
-      // -1 is a placeholder for the id, backend will assign a unique id
-  
-      this.projectService.addProject(newProj).subscribe((res) => {
-        this.projectName = '';
-        this.revenue = 0;
+    if(this.newProject.name.length > 0){
+      
+      this.projectService.addProject(this.newProject).subscribe((res) => {
+        
+        this.newProject = new Project()
+
         console.log(res)
-  
         alert(res)
-  
         this.router.navigate(['/list']);
       });
     }else{
