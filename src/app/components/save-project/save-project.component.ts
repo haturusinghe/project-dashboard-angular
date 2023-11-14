@@ -18,7 +18,7 @@ export class SaveProjectComponent {
 
   
 
-  handleFormSubmit() {
+  onSubmit() {
 
     if(this.newProject.name.length > 0){
       
