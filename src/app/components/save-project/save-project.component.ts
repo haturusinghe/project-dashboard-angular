@@ -18,7 +18,7 @@ export class SaveProjectComponent {
 
   
 
-  onSubmit() {
+  saveProject() {
 
     if(this.newProject.name.length > 0){
       

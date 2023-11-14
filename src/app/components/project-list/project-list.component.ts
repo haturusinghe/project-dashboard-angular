@@ -21,7 +21,7 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  handleDeleteButtonPress(projectId: number): void {
+  deleteProject(projectId: number): void {
     if(confirm("Are you sure you want to delete this project?")) {
       this.projectService.deleteProject(projectId).subscribe((data) => {
         alert(`Project deleted successfully!,${data}`);
