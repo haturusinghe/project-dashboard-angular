@@ -8,20 +8,20 @@ import { Project } from 'src/app/models/project.model';
   providedIn: 'root',
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:5001/api/v1/';
+  private apiUrl = 'http://localhost:5001/api/';
 
   constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
-    const endpoint = 'projects/all';
+    const endpoint = 'projects';
     return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
       map(this.makeProjectList),
     );
   }
   
   getTopProjectsByRevenue(count: number = 3): Observable<Project[]> {
-    const endpoint = 'projects/top/';
-    return this.http.get<any[]>(this.apiUrl + endpoint + count).pipe(
+    const endpoint = 'projects/top';
+    return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
       map(this.makeProjectList),
     );
   }
