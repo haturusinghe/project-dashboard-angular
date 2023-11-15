@@ -14,13 +14,17 @@ export class ProjectListComponent implements OnInit {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
+    this.fetchProjects();
+  }
+
+  private fetchProjects() {
     this.projectService.getProjects().subscribe({
       next: (data) => {
         this.projects = data;
         console.log(this.projects);
       },
-      error: (error: HttpErrorResponse) => {
-        console.log(error.message);
+      error: (httpError: HttpErrorResponse) => {
+        console.log(httpError.error.message);
       },
     });
   }
@@ -29,13 +33,14 @@ export class ProjectListComponent implements OnInit {
     if (confirm('Are you sure you want to delete this project?')) {
       this.projectService.deleteProject(projectId).subscribe({
         next: (data) => {
-          alert(`Project deleted successfully!,${data}`);
-          this.ngOnInit();
+          alert(`Project deleted successfully!`);
+          this.fetchProjects();
         },
-        error: (error: HttpErrorResponse) => {
-          console.log(error.message);
+        error: (httpError: HttpErrorResponse) => {
+          console.log(httpError.error.message);
         },
       });
     }
   }
 }
+
