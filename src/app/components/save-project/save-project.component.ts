@@ -21,12 +21,12 @@ export class SaveProjectComponent {
     if (this.newProject.name.length > 0) {
       this.projectService.addProject(this.newProject).subscribe({
         next: (data) => {
-          alert(`Project saved successfully!,${data}`);
+          console.log(`Project saved successfully!`, data)
           this.newProject = new Project();
           this.router.navigate(['/list']);
         },
-        error: (error: HttpErrorResponse) => {
-          alert(error.message);
+        error: (httpError: HttpErrorResponse) => {
+          alert(httpError.error.message);
         },
       });
     } else {
