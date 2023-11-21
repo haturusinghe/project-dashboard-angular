@@ -37,7 +37,7 @@ export class ProjectListComponent implements OnInit {
           this.fetchProjects();
         },
         error: (httpError: HttpErrorResponse) => {
-          console.log(httpError.error.message);
+          console.log(httpError);
         },
       });
     }
