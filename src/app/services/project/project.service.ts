@@ -8,20 +8,20 @@ import { Project } from 'src/app/models/project.model';
   providedIn: 'root',
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:5001/api/v1/';
+  private apiUrl = 'http://localhost:5001/api/';
 
   constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
-    const endpoint = 'projects/all';
+    const endpoint = 'projects';
     return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
       map(this.makeProjectList),
     );
   }
   
   getTopProjectsByRevenue(count: number = 3): Observable<Project[]> {
-    const endpoint = 'projects/top/';
-    return this.http.get<any[]>(this.apiUrl + endpoint + count).pipe(
+    const endpoint = 'projects/top';
+    return this.http.get<any[]>(this.apiUrl + endpoint).pipe(
       map(this.makeProjectList),
     );
   }
@@ -34,13 +34,12 @@ export class ProjectService {
   }
 
   deleteProject(id: number): Observable<string> {
-    const endpoint = 'projects/delete';
+    const endpoint = 'projects';
     return this.http.delete<string>(this.apiUrl + endpoint + '/' + id);
   }
 
   addProject(project: Project): Observable<Project> {
-    console.log(project);
-    const endpoint = 'projects/save';
+    const endpoint = 'projects';
     return this.http.post<Project>(this.apiUrl + endpoint, project);
   }
 

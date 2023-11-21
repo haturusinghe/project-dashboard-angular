@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { ProjectService } from 'src/app/services/project/project.service';
@@ -13,14 +14,22 @@ export class DashboardComponent implements OnInit {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.projectService.getTopProjectsByRevenue(3).subscribe((data) => {
-      this.topProjects = data;  
-      console.log(data);
+    this.projectService.getTopProjectsByRevenue(3).subscribe({
+      next: (data) => {
+        this.topProjects = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message);
+      },
     });
 
-    this.projectService.getCompletedProjects().subscribe((data) => {
-      this.alertCompletedProjects(data);
-      console.log(data);
+    this.projectService.getCompletedProjects().subscribe({
+      next: (data) => {
+        this.alertCompletedProjects(data);
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.message);
+      },
     });
   }
 

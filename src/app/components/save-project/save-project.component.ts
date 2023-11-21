@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ProjectService } from 'src/app/services/project/project.service';
-import { Project } from 'src/app/models/project.model'
+import { Project } from 'src/app/models/project.model';
 
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-save-project',
@@ -10,33 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./save-project.component.scss'],
 })
 export class SaveProjectComponent {
-  projectName: string = '';
-  revenue: number = 0;
+  newProject: Project;
 
-  constructor(private projectService: ProjectService, private router: Router) { 
+  constructor(private projectService: ProjectService, private router: Router) {
+    this.newProject = new Project();
   }
 
-  
-
-  handleFormSubmit() {
-
-    if(this.projectName.length > 0){
-      const newProj = new Project(-1, this.projectName, this.revenue, false) 
-      // -1 is a placeholder for the id, backend will assign a unique id
-  
-      this.projectService.addProject(newProj).subscribe((res) => {
-        this.projectName = '';
-        this.revenue = 0;
-        console.log(res)
-  
-        alert(res)
-  
-        this.router.navigate(['/list']);
+  saveProject() {
+    if (this.newProject.name.length > 0) {
+      this.projectService.addProject(this.newProject).subscribe({
+        next: (data) => {
+          console.log(`Project saved successfully!`, data)
+          this.newProject = new Project();
+          this.router.navigate(['/list']);
+        },
+        error: (httpError: HttpErrorResponse) => {
+          alert(httpError.error.message);
+        },
       });
-    }else{
-      alert("Project Name cannot be empty")
+    } else {
+      alert('Project Name cannot be empty');
     }
-
-    
   }
 }
