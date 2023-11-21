@@ -34,7 +34,7 @@ export class ProjectService {
   }
 
   deleteProject(id: number): Observable<string> {
-    const endpoint = 'projects/delete';
+    const endpoint = 'projects';
     return this.http.delete<string>(this.apiUrl + endpoint + '/' + id);
   }
 
